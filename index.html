@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Atelier Dulce</title>
+<meta name="description" content="Atelier Dulce: desenhos originais de Dulce Esteves, feitos à mão, emoldurados e prontos a pendurar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Pinyon+Script&display=swap">
+<style>
+/* A classic interior: ivory walls, gilt frames, velvet rose. One deliberate light look. */
+:root {
+  color-scheme: light;
+  --wall: #f4ece0;
+  --wall-2: #ece1d1;
+  --paper: #fbf7f0;
+  --ink: #2e2622;
+  --ink-2: #5b4f46;
+  --ink-3: #8a7c6f;
+  --gold: #a8843c;
+  --gold-lt: #dcc283;
+  --gold-dk: #6f521d;
+  --rose: #8a3045;
+  --rose-dk: #6e2436;
+  --line: #e2d5c1;
+  --script: "Pinyon Script", "Snell Roundhand", "Apple Chancery", cursive;
+  --caps: "Cinzel", "Trajan Pro", "Times New Roman", serif;
+  --display: "Cormorant Garamond", "Cormorant", Garamond, "Times New Roman", serif;
+  --body: "EB Garamond", Garamond, "Times New Roman", serif;
+  --gilt: linear-gradient(135deg, #6f521d 0%, #d9bd78 16%, #9c7a33 33%, #f1dea6 50%, #a8843c 66%, #e2c787 84%, #6f521d 100%);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 19px/1.7 var(--body); -webkit-font-smoothing: antialiased; }
+[hidden] { display: none !important; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--rose); outline-offset: 4px; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 24px; }
+
+.caps { font-family: var(--caps); font-weight: 500; font-size: 12px; letter-spacing: .24em; text-transform: uppercase; }
+.eyebrow { color: var(--gold-dk); display: block; margin-bottom: 14px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 300; line-height: 1.08; margin: 0; text-wrap: balance; }
+h1 em, h2 em, h3 em { font-style: italic; font-weight: 400; }
+h2 { font-size: clamp(38px, 4.8vw, 58px); }
+.lede { font-size: 20px; color: var(--ink-2); max-width: 32em; }
+
+/* Ornaments */
+.ornament { display: block; width: 220px; height: 24px; margin: 0 auto; color: var(--gold); }
+.center { text-align: center; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 12px; cursor: pointer; text-decoration: none;
+  font: 500 12px/1 var(--caps); letter-spacing: .22em; text-transform: uppercase;
+  padding: 18px 30px; background: var(--ink); color: var(--paper); border: 1px solid var(--ink);
+  transition: background .25s, color .25s, border-color .25s;
+}
+.btn:hover { background: var(--rose); border-color: var(--rose); }
+.btn.ghost { background: transparent; color: var(--ink); }
+.btn.ghost:hover { background: var(--ink); color: var(--paper); }
+.btn svg { width: 17px; height: 17px; flex: none; }
+.more { font: 500 12px/1 var(--caps); letter-spacing: .22em; text-transform: uppercase; text-decoration: none; padding-bottom: 6px; border-bottom: 1px solid var(--gold); }
+.more:hover { color: var(--rose); border-color: var(--rose); }
+
+/* Announcement + header */
+.announce { background: var(--rose); color: #f6e9dc; text-align: center; padding: 10px 16px; font-size: 11px; }
+header.site { background: var(--paper); text-align: center; padding-top: 30px; }
+.brand { text-decoration: none; display: inline-block; }
+.brand .caps { font-size: 11px; letter-spacing: .5em; color: var(--gold-dk); display: block; margin-right: -.5em; }
+.brand .name { font: 400 clamp(44px, 6vw, 64px)/1.1 var(--script); display: block; padding-inline: .2em; }
+nav.main { margin-top: 18px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+nav.main ul { list-style: none; margin: 0 auto; padding: 0; display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 44px; }
+nav.main a { display: inline-block; padding: 15px 0; text-decoration: none; font: 500 12px/1 var(--caps); letter-spacing: .24em; text-transform: uppercase; position: relative; }
+nav.main a::after { content: ""; position: absolute; left: 50%; right: 50%; bottom: 10px; height: 1px; background: var(--gold); transition: left .25s, right .25s; }
+nav.main a:hover::after { left: 0; right: .24em; }
+
+/* Hero: a wall of the house, with cornice and lamp light */
+.hero { position: relative; background:
+    radial-gradient(ellipse 60% 70% at 26% 42%, rgba(255, 226, 165, .55), transparent 70%),
+    var(--wall); }
+.cornice { height: 40px; background: linear-gradient(to bottom,
+    #fbf7f0 0 5px, #d8c8ae 5px 6px, #f6efe3 6px 13px, #cdbb9f 13px 14px, #efe6d7 14px 16px,
+    #e6dac6 16px 22px, #d4c3a8 22px 23px, #f1e9dc 23px 31px, #dccdb5 31px 32px, #ece2d3 32px 40px);
+  box-shadow: 0 8px 12px -8px rgba(90, 70, 40, .35); position: relative; }
+.cornice::after { content: ""; position: absolute; left: 0; right: 0; top: 16px; height: 6px;
+  background: repeating-linear-gradient(90deg, #efe6d7 0 9px, #d2c1a5 9px 11px); opacity: .9; }
+.hero .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; padding-block: 80px 96px; }
+.hang { position: relative; justify-self: center; width: min(420px, 100%); padding-top: 70px; }
+.hang .wire { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 64%; height: 86px; overflow: visible; }
+.hero h1 { font-size: clamp(46px, 6.2vw, 80px); }
+.hero .lede { margin: 26px 0 36px; }
+.hero .ctas { display: flex; gap: 28px; align-items: center; flex-wrap: wrap; }
+
+/* Gilt frame (the hero, the detail view) */
+.gilt { position: relative; padding: 20px; background: var(--gilt);
+  box-shadow: inset 0 0 0 1px #5a4216, inset 0 0 0 4px #caa95e, inset 0 0 0 5px #6f521d, inset 0 0 0 9px #ead59a, inset 0 0 0 10px #7a5c22,
+    0 34px 50px -26px rgba(46, 38, 34, .75), 0 10px 18px -10px rgba(46, 38, 34, .45); }
+.gilt .mat { background: #fbf8f1; padding: 12%; box-shadow: 0 0 0 1px #5a4216, 0 0 0 3px #c9a95f, 0 0 0 4px #6f521d, inset 2px 2px 5px rgba(0, 0, 0, .16); }
+.mat img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; box-shadow: 0 0 0 5px #fff, 0 0 0 6px #e5dccb; }
+
+/* Collection */
+section { padding-block: 96px; }
+.head { text-align: center; margin-bottom: 20px; }
+.head .ornament { margin-top: 22px; }
+.filters { display: flex; justify-content: center; gap: 8px 30px; flex-wrap: wrap; margin: 26px 0 56px; }
+.filters button { background: none; border: 0; padding: 6px 0; cursor: pointer; color: var(--ink-3); font: 500 12px/1 var(--caps); letter-spacing: .22em; text-transform: uppercase; border-bottom: 1px solid transparent; }
+.filters button:hover { color: var(--ink); }
+.filters button[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--gold); }
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 72px 48px; }
+.piece { text-align: center; display: grid; gap: 22px; align-content: start; }
+.piece .open { all: unset; cursor: pointer; display: block; }
+.piece .open:focus-visible { outline: 2px solid var(--rose); outline-offset: 8px; }
+.slim { padding: 7px; background: var(--gilt); box-shadow: inset 0 0 0 1px #5a4216, 0 22px 34px -22px rgba(46, 38, 34, .65); transition: transform .4s ease, box-shadow .4s ease; position: relative; }
+.slim .mat { background: #fbf8f1; padding: 11%; box-shadow: 0 0 0 1px #6f521d, inset 1px 1px 4px rgba(0, 0, 0, .14); }
+.piece .open:hover .slim { transform: translateY(-6px); box-shadow: inset 0 0 0 1px #5a4216, 0 32px 44px -24px rgba(46, 38, 34, .7); }
+.piece h3 { font-size: 28px; font-style: italic; font-weight: 400; }
+.piece .meta { color: var(--ink-3); font-size: 10.5px; margin-top: 8px; }
+.piece .price { font: 400 20px/1 var(--body); margin-top: 12px; }
+.piece.sold .mat img { filter: saturate(.5) sepia(.15); opacity: .85; }
+.piece.sold .price { color: var(--ink-3); text-decoration: line-through; }
+.badge { position: absolute; top: 18px; right: -8px; z-index: 2; background: var(--rose); color: #f6e9dc; padding: 8px 14px; font: 500 10px/1 var(--caps); letter-spacing: .22em; text-transform: uppercase; box-shadow: 0 4px 10px -4px rgba(0,0,0,.4); }
+.soon .mat div { aspect-ratio: 3 / 4; width: 100%; display: grid; place-items: center; border: 1px solid var(--line); background: #f7f1e6; }
+.soon span { font: italic 400 22px/1.3 var(--display); color: var(--ink-3); padding: 12px; }
+
+/* Detail dialog */
+dialog { border: 0; padding: 0; background: transparent; width: 100%; max-width: min(1000px, calc(100vw - 32px)); }
+dialog::backdrop { background: rgba(46, 38, 34, .6); }
+.sheet { position: relative; display: grid; grid-template-columns: 1fr 1fr; background: var(--paper); max-height: calc(100vh - 40px); overflow: auto;
+  outline: 1px solid var(--gold-lt); outline-offset: -12px; box-shadow: 0 40px 90px -30px rgba(0, 0, 0, .6); }
+.sheet .pic { background: radial-gradient(ellipse at 50% 40%, rgba(255, 226, 165, .5), transparent 70%), var(--wall); padding: 56px 48px; display: grid; place-items: center; }
+.sheet .pic .gilt { width: min(360px, 100%); }
+.sheet .txt { padding: 60px 52px 52px; display: grid; gap: 20px; align-content: center; }
+.sheet h3 { font-size: 46px; font-style: italic; font-weight: 400; }
+.sheet dl { display: grid; grid-template-columns: auto 1fr; gap: 10px 24px; margin: 6px 0; padding-block: 18px; border-block: 1px solid var(--line); }
+.sheet dt { font: 500 10.5px/2 var(--caps); letter-spacing: .2em; text-transform: uppercase; color: var(--ink-3); }
+.sheet dd { margin: 0; font-size: 18px; }
+.sheet .price { font: 400 34px/1 var(--display); }
+.sheet .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.sheet .small { font-size: 16px; color: var(--ink-3); font-style: italic; margin: 0; }
+.x { position: absolute; top: 24px; right: 24px; width: 42px; height: 42px; border: 0; background: none; cursor: pointer; display: grid; place-items: center; color: var(--ink); z-index: 2; }
+.x svg { width: 22px; height: 22px; }
+
+/* About */
+.about { background: var(--wall); border-block: 1px solid var(--line); }
+.about .wrap { display: grid; grid-template-columns: .85fr 1.15fr; gap: 88px; align-items: center; }
+.oval { justify-self: center; width: min(360px, 88%); aspect-ratio: 3 / 4; border-radius: 50%; padding: 16px; background: var(--gilt);
+  box-shadow: inset 0 0 0 1px #5a4216, inset 0 0 0 4px #caa95e, inset 0 0 0 5px #6f521d, 0 34px 50px -26px rgba(46, 38, 34, .75); margin: 0; }
+.oval img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; box-shadow: 0 0 0 2px #5a4216; }
+.about h2 { margin-bottom: 28px; }
+.bio p { margin: 0 0 18px; max-width: 34em; }
+.bio p:first-child::first-letter { font: 400 5.4em/.72 var(--script); float: left; color: var(--gold-dk); padding: .12em .14em 0 0; }
+.sign { font: 400 52px/1 var(--script); color: var(--gold-dk); display: block; margin-top: 18px; }
+.facts { display: flex; gap: 10px 28px; flex-wrap: wrap; margin: 28px 0 0; padding: 22px 0 0; list-style: none; border-top: 1px solid var(--line); color: var(--ink-2); }
+.facts li::before { content: "◆"; color: var(--gold); font-size: 8px; margin-right: 10px; vertical-align: 2px; }
+
+/* How to buy: a real sequence, in roman numerals */
+.steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 56px; list-style: none; margin: 56px 0 0; padding: 0; }
+.steps li { text-align: center; }
+.steps .num { font: 300 64px/1 var(--display); color: var(--gold); display: block; }
+.steps h3 { font: 500 13px/1.4 var(--caps); letter-spacing: .2em; text-transform: uppercase; margin: 18px 0 12px; }
+.steps p { margin: 0 auto; color: var(--ink-2); max-width: 20em; }
+
+/* Commissions */
+.commission { position: relative; text-align: center; padding: 72px 40px; border: 1px solid var(--gold); outline: 1px solid var(--gold); outline-offset: 6px; margin: 6px; background: var(--wall); }
+.commission .corner { position: absolute; width: 46px; height: 46px; color: var(--gold); }
+.commission .corner.tl { top: 10px; left: 10px; }
+.commission .corner.tr { top: 10px; right: 10px; transform: scaleX(-1); }
+.commission .corner.bl { bottom: 10px; left: 10px; transform: scaleY(-1); }
+.commission .corner.br { bottom: 10px; right: 10px; transform: scale(-1); }
+.commission p { margin: 18px auto 34px; max-width: 34em; color: var(--ink-2); }
+
+/* Footer */
+footer { background: var(--ink); color: #eadfcd; margin-top: 96px; padding-block: 72px 36px; text-align: center; }
+footer .name { font: 400 54px/1.1 var(--script); color: var(--gold-lt); }
+footer .ornament { color: var(--gold); margin-block: 18px 30px; }
+.contacts { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px 40px; }
+.contacts a, .contacts span { display: inline-flex; gap: 10px; align-items: center; text-decoration: none; font-size: 18px; }
+.contacts a:hover { color: var(--gold-lt); }
+.contacts svg { width: 18px; height: 18px; color: var(--gold-lt); }
+.fine { margin-top: 48px; font-size: 10.5px; color: #a89a88; }
+
+@media (max-width: 900px) {
+  .hero .wrap, .about .wrap { grid-template-columns: 1fr; gap: 56px; }
+  .hero .wrap { padding-block: 48px 72px; }
+  .hero .txt { text-align: center; }
+  .hero .lede { margin-inline: auto; }
+  .hero .ctas { justify-content: center; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px 28px; }
+  .steps { grid-template-columns: 1fr; gap: 44px; }
+  .sheet { grid-template-columns: 1fr; }
+  .sheet .pic { padding: 44px 32px; }
+  .sheet .txt { padding: 32px 28px 40px; }
+  .about .txt { text-align: center; }
+  .bio p { margin-inline: auto; text-align: left; }
+  .facts { justify-content: center; }
+}
+@media (max-width: 560px) {
+  .wrap { padding-inline: 16px; }
+  section { padding-block: 72px; }
+  nav.main ul { gap: 0 22px; }
+  nav.main a { font-size: 11px; letter-spacing: .18em; }
+  .grid { grid-template-columns: 1fr; padding-inline: 20px; }
+  .hang { width: min(320px, 88%); }
+  .commission { padding: 60px 22px; }
+  .sheet h3 { font-size: 38px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="orn" viewBox="0 0 240 24">
+      <g fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round">
+        <path d="M14 12H88M152 12H226"/>
+        <path d="M88 12c9 0 12-8 19-6.4 4.4 1 3.6 6.4-.4 6.4M88 12c9 0 12 8 19 6.4 4.4-1 3.6-6.4-.4-6.4"/>
+        <path d="M152 12c-9 0-12-8-19-6.4-4.4 1-3.6 6.4.4 6.4M152 12c-9 0-12 8-19 6.4-4.4-1-3.6-6.4.4-6.4"/>
+      </g>
+      <path d="M120 4l7 8-7 8-7-8z" fill="currentColor"/>
+      <circle cx="10" cy="12" r="1.8" fill="currentColor"/><circle cx="230" cy="12" r="1.8" fill="currentColor"/>
+    </symbol>
+    <symbol id="corner" viewBox="0 0 46 46">
+      <g fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+        <path d="M2 44V14C2 7 7 2 14 2h30"/>
+        <path d="M8 44V20c0-7 5-12 12-12h24"/>
+        <path d="M14 24c0-6 4-10 10-10 4 0 6 3 4.5 5.5S23 21 23 18.5"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="announce caps">Peças únicas, desenhadas à mão &nbsp;·&nbsp; Envio para todo o país</div>
+
+<header class="site">
+  <a class="brand" href="#topo">
+    <span class="caps">Atelier</span>
+    <span class="name" data-bind="nome"></span>
+  </a>
+  <nav class="main" aria-label="Principal">
+    <ul>
+      <li><a href="#obras">Obras</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#adquirir">Como adquirir</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="topo">
+  <div class="hero">
+    <div class="cornice" aria-hidden="true"></div>
+    <div class="wrap">
+      <div class="hang">
+        <svg class="wire" viewBox="0 0 100 86" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M4 86L50 8 96 86" fill="none" stroke="#8a7456" stroke-width=".8" vector-effect="non-scaling-stroke"/>
+          <circle cx="50" cy="7" r="2.6" fill="#6f521d"/>
+        </svg>
+        <div class="gilt" id="hero-frame"><div class="mat"><img id="hero-img" alt="" width="540" height="720"></div></div>
+      </div>
+      <div class="txt">
+        <span class="caps eyebrow">Desenhos originais</span>
+        <h1>Pequenas maravilhas, <em>desenhadas à mão</em></h1>
+        <p class="lede" data-bind="intro"></p>
+        <div class="ctas">
+          <a class="btn" href="#obras">Ver a coleção</a>
+          <a class="more" href="#sobre">Conhecer a artista</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="obras">
+    <div class="wrap">
+      <div class="head">
+        <span class="caps eyebrow">A coleção</span>
+        <h2>Obras <em>disponíveis</em></h2>
+        <svg class="ornament" aria-hidden="true"><use href="#orn"/></svg>
+      </div>
+      <div class="filters" role="group" aria-label="Filtrar obras" id="filters"></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="about" id="sobre">
+    <div class="wrap">
+      <figure class="oval"><img src="img/artista.jpg" alt="" id="artist-img" width="600" height="800"></figure>
+      <div class="txt">
+        <span class="caps eyebrow">A artista</span>
+        <h2>Sobre <em>mim</em></h2>
+        <div class="bio" id="bio"></div>
+        <span class="sign" data-bind="assinatura"></span>
+        <ul class="facts" id="facts"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="adquirir">
+    <div class="wrap">
+      <div class="head">
+        <span class="caps eyebrow">Com calma e atenção</span>
+        <h2>Como <em>adquirir</em> uma obra</h2>
+        <svg class="ornament" aria-hidden="true"><use href="#orn"/></svg>
+      </div>
+      <ol class="steps">
+        <li><span class="num">I</span><h3>Escolha a obra</h3><p>Clique num desenho para ver as medidas, a técnica e o preço.</p></li>
+        <li><span class="num">II</span><h3>Fale comigo</h3><p>Carregue em "Quero esta obra" e envie a mensagem por WhatsApp ou email. Respondo pessoalmente.</p></li>
+        <li><span class="num">III</span><h3>Receba em casa</h3><p data-bind="envio"></p></li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="commission">
+      <svg class="corner tl" aria-hidden="true"><use href="#corner"/></svg>
+      <svg class="corner tr" aria-hidden="true"><use href="#corner"/></svg>
+      <svg class="corner bl" aria-hidden="true"><use href="#corner"/></svg>
+      <svg class="corner br" aria-hidden="true"><use href="#corner"/></svg>
+      <span class="caps eyebrow">Por encomenda</span>
+      <h2>Um desenho <em>só seu</em></h2>
+      <p>Para oferecer num aniversário, num batizado ou para o quarto de um neto. Conte-me a sua ideia e desenho-a especialmente para si.</p>
+      <a class="btn" id="commission-btn" target="_blank" rel="noopener">Pedir uma encomenda</a>
+    </div>
+  </div>
+</main>
+
+<footer id="contacto">
+  <div class="wrap">
+    <div class="name" data-bind="nomeCompleto"></div>
+    <svg class="ornament" aria-hidden="true"><use href="#orn"/></svg>
+    <div class="contacts" id="contacts"></div>
+    <div class="fine caps" id="fine"></div>
+  </div>
+</footer>
+
+<dialog id="dlg" aria-labelledby="dlg-title"><div class="sheet" id="sheet"></div></dialog>
+
+<script>
+/* ============================================================
+   EDITAR AQUI: tudo o que aparece no site vem daqui.
+   Para acrescentar uma obra: põe a foto em img/quadros/ e
+   copia um bloco { ... } da lista "quadros".
+   estado: "disponivel", "reservado" ou "vendido"
+   ============================================================ */
+const SITE = {
+  nome: "Dulce",                    // nome da marca: Atelier Dulce
+  nomeCompleto: "Dulce Esteves",
+  assinatura: "Dulce Esteves",
+  cidade: "Cidade",
+  intro: "Desenhos originais, feitos à mão com lápis de cor, um de cada vez. Cada obra é única e chega emoldurada, pronta a pendurar.",
+  bio: [
+    "Escreva aqui como começou a desenhar. Por exemplo: comecei a desenhar depois de me reformar, para ocupar as tardes, e nunca mais parei.",
+    "Conte também o que a inspira: os animais, as flores, os netos, os livros de histórias…",
+    "Cada desenho é feito à mão, do primeiro traço à última flor. Não há dois iguais."
+  ],
+  factos: ["Lápis de cor", "Peças únicas", "Emoldurados"],
+  whatsapp: "351900000000",          // indicativo + número, sem espaços nem +
+  email: "atelier@exemplo.pt",
+  instagram: "atelier.exemplo",     // sem @
+  envio: "Entrego em mão na minha zona ou envio por correio para todo o país, bem protegido. Pagamento por MB WAY ou transferência.",
+  quadros: [
+    {
+      titulo: "Cervo das flores",
+      imagem: "img/quadros/cervo-das-flores.jpg",
+      tecnica: "Lápis de cor sobre papel",
+      medidas: "30 × 40 cm, com moldura",
+      preco: 45,
+      estado: "disponivel",
+      descricao: "Um pequeno cervo de hastes douradas e asas de cristal, num jardim de flores cor-de-rosa e azuis."
+    }
+  ]
+};
+</script>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const eur = v => new Intl.NumberFormat('pt-PT', { style: 'currency', currency: 'EUR', maximumFractionDigits: v % 1 ? 2 : 0 }).format(v);
+  const ESTADO = { disponivel: 'Disponível', reservado: 'Reservado', vendido: 'Vendido' };
+  const wa = txt => `https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(txt)}`;
+  const mail = (subj, body) => `mailto:${SITE.email}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`;
+  const ICON = {
+    wa: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 20.5l1.3-4.3A8.5 8.5 0 1 1 8 19.3z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.5-2-1-1 .8c-1-.4-2.4-1.8-2.8-2.8l.8-1-1-2z"/></svg>',
+    mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 6 9-6"/></svg>',
+    ig: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>',
+    pin: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>',
+  };
+
+  document.querySelectorAll('[data-bind]').forEach(el => { el.textContent = SITE[el.dataset.bind] ?? ''; });
+  $('#bio').innerHTML = SITE.bio.map(p => `<p>${esc(p)}</p>`).join('');
+  $('#facts').innerHTML = SITE.factos.map(f => `<li>${esc(f)}</li>`).join('');
+  $('#artist-img').alt = `${SITE.nomeCompleto} com um dos seus desenhos emoldurados`;
+  document.title = `Atelier ${SITE.nome}`;
+
+  const quadros = SITE.quadros.map((q, i) => ({ ...q, i }));
+  const destaque = quadros.find(q => q.estado === 'disponivel') || quadros[0];
+  if (destaque) {
+    $('#hero-img').src = destaque.imagem; $('#hero-img').alt = destaque.titulo;
+    $('#hero-frame').style.cursor = 'pointer'; $('#hero-frame').onclick = () => open(destaque.i);
+  }
+
+  let filtro = 'todos';
+  const FILTROS = [['todos', 'Todas'], ['disponivel', 'Disponíveis'], ['vendido', 'Vendidas']];
+  function filters() {
+    $('#filters').innerHTML = FILTROS.map(([k, l]) =>
+      `<button type="button" data-f="${k}" aria-pressed="${k === filtro}">${l}</button>`).join('');
+  }
+  function grid() {
+    const list = quadros.filter(q => filtro === 'todos' || q.estado === filtro);
+    const cards = list.map(q => `
+      <article class="piece ${q.estado === 'vendido' ? 'sold' : ''}">
+        <button class="open" type="button" data-open="${q.i}" aria-label="Ver ${esc(q.titulo)}">
+          <div class="slim">
+            ${q.estado !== 'disponivel' ? `<span class="badge">${ESTADO[q.estado]}</span>` : ''}
+            <div class="mat"><img src="${esc(q.imagem)}" alt="${esc(q.titulo)}" loading="lazy" width="540" height="720"></div>
+          </div>
+        </button>
+        <div>
+          <h3>${esc(q.titulo)}</h3>
+          <div class="meta caps">${esc(q.tecnica)} &nbsp;·&nbsp; ${esc(q.medidas.split(',')[0])}</div>
+          <div class="price">${eur(q.preco)}</div>
+        </div>
+      </article>`).join('');
+    // Placeholders keep the wall looking hung while the collection grows
+    const vazios = filtro === 'vendido' ? 0 : Math.max(0, 3 - list.length);
+    const empty = Array.from({ length: vazios }, () => `
+      <div class="piece soon" aria-hidden="true"><div class="slim"><div class="mat"><div><span>Nova obra em breve</span></div></div></div></div>`).join('');
+    $('#grid').innerHTML = cards + empty || '<p class="lede center" style="grid-column:1/-1;margin:auto">Ainda não há obras nesta categoria.</p>';
+  }
+  $('#filters').onclick = e => { const b = e.target.closest('[data-f]'); if (!b) return; filtro = b.dataset.f; filters(); grid(); };
+  $('#grid').onclick = e => { const b = e.target.closest('[data-open]'); if (b) open(+b.dataset.open); };
+
+  function open(i) {
+    const q = quadros[i];
+    const msg = `Olá! Vi no site a obra "${q.titulo}" (${eur(q.preco)}) e tenho interesse. Ainda está disponível?`;
+    const disp = q.estado === 'disponivel';
+    $('#sheet').innerHTML = `
+      <button class="x" type="button" id="x" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
+      <div class="pic"><div class="gilt"><div class="mat"><img src="${esc(q.imagem)}" alt="${esc(q.titulo)}"></div></div></div>
+      <div class="txt">
+        <span class="caps eyebrow" style="margin:0;color:${disp ? 'var(--gold-dk)' : 'var(--rose)'}">${ESTADO[q.estado]}</span>
+        <h3 id="dlg-title">${esc(q.titulo)}</h3>
+        <p style="margin:0;color:var(--ink-2)">${esc(q.descricao || '')}</p>
+        <dl><dt>Técnica</dt><dd>${esc(q.tecnica)}</dd><dt>Medidas</dt><dd>${esc(q.medidas)}</dd><dt>Obra</dt><dd>Original, exemplar único</dd></dl>
+        <div class="price" style="${disp ? '' : 'color:var(--ink-3);text-decoration:line-through'}">${eur(q.preco)}</div>
+        <div class="actions">
+          ${disp ? `<a class="btn" href="${wa(msg)}" target="_blank" rel="noopener">${ICON.wa} Quero esta obra</a>
+                    <a class="btn ghost" href="${mail('Obra: ' + q.titulo, msg)}">${ICON.mail} Email</a>`
+                 : `<a class="btn" href="${wa(`Olá! Vi a obra "${q.titulo}" no site. Faz alguma semelhante?`)}" target="_blank" rel="noopener">${ICON.wa} Pedir uma semelhante</a>`}
+        </div>
+        <p class="small">${esc(SITE.envio)}</p>
+      </div>`;
+    $('#x').onclick = () => $('#dlg').close();
+    $('#dlg').showModal();
+  }
+  $('#dlg').addEventListener('click', e => { if (e.target.id === 'dlg') e.target.close(); });
+
+  $('#commission-btn').href = wa('Olá! Gostava de encomendar um desenho. A minha ideia é…');
+  $('#contacts').innerHTML = `
+    <a href="${wa('Olá! Vim pelo site.')}" target="_blank" rel="noopener">${ICON.wa} +${esc(SITE.whatsapp.replace(/^(\d{3})(\d{3})(\d{3})(\d{3})$/, '$1 $2 $3 $4'))}</a>
+    <a href="mailto:${esc(SITE.email)}">${ICON.mail} ${esc(SITE.email)}</a>
+    <a href="https://instagram.com/${esc(SITE.instagram)}" target="_blank" rel="noopener">${ICON.ig} @${esc(SITE.instagram)}</a>
+    <span>${ICON.pin} ${esc(SITE.cidade)}, Portugal</span>`;
+  $('#fine').textContent = `© ${new Date().getFullYear()} ${SITE.nomeCompleto} · Atelier ${SITE.nome} · Todas as obras são originais`;
+
+  filters(); grid();
+})();
+</script>
+</body>
+</html>
