@@ -121,6 +121,11 @@ section { padding-block: 96px; }
 .piece.sold .mat img { filter: saturate(.5) sepia(.15); opacity: .85; }
 .piece.sold .price { color: var(--ink-3); text-decoration: line-through; }
 .badge { position: absolute; top: 18px; right: -8px; z-index: 2; background: var(--rose); color: #f6e9dc; padding: 8px 14px; font: 500 10px/1 var(--caps); letter-spacing: .22em; text-transform: uppercase; box-shadow: 0 4px 10px -4px rgba(0,0,0,.4); }
+/* Works photographed in their own frame: show the photo as-is, hung with a shadow */
+.photo { position: relative; transition: transform .4s ease, box-shadow .4s ease; box-shadow: 0 26px 40px -24px rgba(46, 38, 34, .7), 0 6px 12px -8px rgba(46, 38, 34, .35); }
+.photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.piece .open:hover .photo { transform: translateY(-6px); box-shadow: 0 36px 48px -26px rgba(46, 38, 34, .75), 0 8px 14px -8px rgba(46, 38, 34, .35); }
+.sheet .pic .photo { width: min(380px, 100%); }
 .soon .mat div { aspect-ratio: 3 / 4; width: 100%; display: grid; place-items: center; border: 1px solid var(--line); background: #f7f1e6; }
 .soon span { font: italic 400 22px/1.3 var(--display); color: var(--ink-3); padding: 12px; }
 
@@ -258,7 +263,7 @@ footer .ornament { color: var(--gold); margin-block: 18px 30px; }
           <path d="M4 86L50 8 96 86" fill="none" stroke="#8a7456" stroke-width=".8" vector-effect="non-scaling-stroke"/>
           <circle cx="50" cy="7" r="2.6" fill="#6f521d"/>
         </svg>
-        <div class="gilt" id="hero-frame"><div class="mat"><img id="hero-img" alt="" width="540" height="720"></div></div>
+        <div id="hero-frame"></div>
       </div>
       <div class="txt">
         <span class="caps eyebrow">Desenhos originais</span>
@@ -362,11 +367,21 @@ const SITE = {
   envio: "Entrego em mão na minha zona ou envio por correio para todo o país, bem protegido. Pagamento por MB WAY ou transferência.",
   quadros: [
     {
+      titulo: "Chávena de flores azuis",
+      imagem: "img/quadros/chavena-de-flores.jpg",
+      moldura: "foto",                 // a foto já mostra a moldura verdadeira
+      tecnica: "Lápis de cor sobre papel",
+      medidas: "",                     // ex.: "40 × 50 cm, com moldura"
+      preco: null,                     // ex.: 60  (vazio = "Preço sob consulta")
+      estado: "disponivel",
+      descricao: "Um ramo de amores-perfeitos e hortênsias azuis numa chávena de porcelana com raminhos pintados. Assinado pela artista."
+    },
+    {
       titulo: "Cervo das flores",
       imagem: "img/quadros/cervo-das-flores.jpg",
       tecnica: "Lápis de cor sobre papel",
       medidas: "30 × 40 cm, com moldura",
-      preco: 45,
+      preco: null,
       estado: "disponivel",
       descricao: "Um pequeno cervo de hastes douradas e asas de cristal, num jardim de flores cor-de-rosa e azuis."
     }
@@ -395,10 +410,17 @@ const SITE = {
   $('#artist-img').alt = `${SITE.nomeCompleto} com um dos seus desenhos emoldurados`;
   document.title = `Atelier ${SITE.nome}`;
 
+  // moldura: "foto" = the photo already shows the real frame; otherwise the site draws a gilt frame
+  function frame(q, slim, lazy) {
+    const img = `<img src="${esc(q.imagem)}" alt="${esc(q.titulo)}"${lazy ? ' loading="lazy"' : ''}>`;
+    if (q.moldura === 'foto') return `<div class="photo">${img}</div>`;
+    return `<div class="${slim ? 'slim' : 'gilt'}"><div class="mat">${img}</div></div>`;
+  }
+  const precoTxt = q => q.preco ? eur(q.preco) : 'Preço sob consulta';
   const quadros = SITE.quadros.map((q, i) => ({ ...q, i }));
   const destaque = quadros.find(q => q.estado === 'disponivel') || quadros[0];
   if (destaque) {
-    $('#hero-img').src = destaque.imagem; $('#hero-img').alt = destaque.titulo;
+    $('#hero-frame').outerHTML = `<div id="hero-frame">${frame(destaque, false)}</div>`;
     $('#hero-frame').style.cursor = 'pointer'; $('#hero-frame').onclick = () => open(destaque.i);
   }
 
@@ -413,15 +435,15 @@ const SITE = {
     const cards = list.map(q => `
       <article class="piece ${q.estado === 'vendido' ? 'sold' : ''}">
         <button class="open" type="button" data-open="${q.i}" aria-label="Ver ${esc(q.titulo)}">
-          <div class="slim">
+          <div style="position:relative">
             ${q.estado !== 'disponivel' ? `<span class="badge">${ESTADO[q.estado]}</span>` : ''}
-            <div class="mat"><img src="${esc(q.imagem)}" alt="${esc(q.titulo)}" loading="lazy" width="540" height="720"></div>
+            ${frame(q, true, true)}
           </div>
         </button>
         <div>
           <h3>${esc(q.titulo)}</h3>
-          <div class="meta caps">${esc(q.tecnica)} &nbsp;·&nbsp; ${esc(q.medidas.split(',')[0])}</div>
-          <div class="price">${eur(q.preco)}</div>
+          <div class="meta caps">${[q.tecnica, (q.medidas || '').split(',')[0]].filter(Boolean).map(esc).join(' &nbsp;·&nbsp; ')}</div>
+          <div class="price">${precoTxt(q)}</div>
         </div>
       </article>`).join('');
     // Placeholders keep the wall looking hung while the collection grows
@@ -435,17 +457,17 @@ const SITE = {
 
   function open(i) {
     const q = quadros[i];
-    const msg = `Olá! Vi no site a obra "${q.titulo}" (${eur(q.preco)}) e tenho interesse. Ainda está disponível?`;
+    const msg = `Olá! Vi no site a obra "${q.titulo}"${q.preco ? ` (${eur(q.preco)})` : ''} e tenho interesse. Ainda está disponível?`;
     const disp = q.estado === 'disponivel';
     $('#sheet').innerHTML = `
       <button class="x" type="button" id="x" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg></button>
-      <div class="pic"><div class="gilt"><div class="mat"><img src="${esc(q.imagem)}" alt="${esc(q.titulo)}"></div></div></div>
+      <div class="pic">${frame(q, false)}</div>
       <div class="txt">
         <span class="caps eyebrow" style="margin:0;color:${disp ? 'var(--gold-dk)' : 'var(--rose)'}">${ESTADO[q.estado]}</span>
         <h3 id="dlg-title">${esc(q.titulo)}</h3>
         <p style="margin:0;color:var(--ink-2)">${esc(q.descricao || '')}</p>
-        <dl><dt>Técnica</dt><dd>${esc(q.tecnica)}</dd><dt>Medidas</dt><dd>${esc(q.medidas)}</dd><dt>Obra</dt><dd>Original, exemplar único</dd></dl>
-        <div class="price" style="${disp ? '' : 'color:var(--ink-3);text-decoration:line-through'}">${eur(q.preco)}</div>
+        <dl><dt>Técnica</dt><dd>${esc(q.tecnica)}</dd>${q.medidas ? `<dt>Medidas</dt><dd>${esc(q.medidas)}</dd>` : ''}<dt>Obra</dt><dd>Original, exemplar único</dd></dl>
+        <div class="price" style="${disp ? '' : 'color:var(--ink-3);text-decoration:line-through'}${q.preco ? '' : ';font-size:26px'}">${precoTxt(q)}</div>
         <div class="actions">
           ${disp ? `<a class="btn" href="${wa(msg)}" target="_blank" rel="noopener">${ICON.wa} Quero esta obra</a>
                     <a class="btn ghost" href="${mail('Obra: ' + q.titulo, msg)}">${ICON.mail} Email</a>`
