@@ -123,7 +123,7 @@ section { padding-block: 96px; }
 .badge { position: absolute; top: 18px; right: -8px; z-index: 2; background: var(--rose); color: #f6e9dc; padding: 8px 14px; font: 500 10px/1 var(--caps); letter-spacing: .22em; text-transform: uppercase; box-shadow: 0 4px 10px -4px rgba(0,0,0,.4); }
 /* Works photographed in their own frame: show the photo as-is, hung with a shadow */
 .photo { position: relative; transition: transform .4s ease, box-shadow .4s ease; box-shadow: 0 26px 40px -24px rgba(46, 38, 34, .7), 0 6px 12px -8px rgba(46, 38, 34, .35); }
-.photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.photo img { width: 100%; height: auto; }   /* never crop: the real frame must stay whole */
 .piece .open:hover .photo { transform: translateY(-6px); box-shadow: 0 36px 48px -26px rgba(46, 38, 34, .75), 0 8px 14px -8px rgba(46, 38, 34, .35); }
 .sheet .pic .photo { width: min(380px, 100%); }
 .soon .mat div { aspect-ratio: 3 / 4; width: 100%; display: grid; place-items: center; border: 1px solid var(--line); background: #f7f1e6; }
@@ -144,7 +144,7 @@ dialog::backdrop { background: rgba(46, 38, 34, .6); }
 .sheet .price { font: 400 34px/1 var(--display); }
 .sheet .actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .sheet .small { font-size: 16px; color: var(--ink-3); font-style: italic; margin: 0; }
-.x { position: absolute; top: 24px; right: 24px; width: 42px; height: 42px; border: 0; background: none; cursor: pointer; display: grid; place-items: center; color: var(--ink); z-index: 2; }
+.x { position: absolute; top: 20px; right: 20px; width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 50%; background: var(--paper); box-shadow: 0 4px 12px -4px rgba(46,38,34,.35); cursor: pointer; display: grid; place-items: center; color: var(--ink); z-index: 2; }
 .x svg { width: 22px; height: 22px; }
 
 /* About */
@@ -195,7 +195,8 @@ footer .ornament { color: var(--gold); margin-block: 18px 30px; }
   .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px 28px; }
   .steps { grid-template-columns: 1fr; gap: 44px; }
   .sheet { grid-template-columns: 1fr; }
-  .sheet .pic { padding: 44px 32px; }
+  .sheet .pic { padding: 76px 24px 36px; }
+  .sheet .pic .photo { width: min(420px, 100%); }
   .sheet .txt { padding: 32px 28px 40px; }
   .about .txt { text-align: center; }
   .bio p { margin-inline: auto; text-align: left; }
