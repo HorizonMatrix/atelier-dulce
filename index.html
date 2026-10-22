@@ -401,7 +401,7 @@ const SITE = {
   document.querySelectorAll('[data-bind]').forEach(el => { el.textContent = SITE[el.dataset.bind] ?? ''; });
   $('#bio').innerHTML = SITE.bio.map(p => `<p>${esc(p)}</p>`).join('');
   $('#facts').innerHTML = SITE.factos.map(f => `<li>${esc(f)}</li>`).join('');
-  $('#artist-img').alt = `${SITE.nomeCompleto} com um dos seus desenhos emoldurados`;
+  $('#artist-img').alt = `${SITE.nomeCompleto} em frente ao escadório do Bom Jesus, em Braga`;
   document.title = `Atelier ${SITE.nome}`;
 
   // moldura: "foto" = the photo already shows the real frame; otherwise the site draws a gilt frame
